@@ -9,12 +9,12 @@ You can simulate BCH Code by using C++, using this code.The procedure its very e
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hasanabs/BCH_Code_Simulator/master/pic.png" height="500" title="Input GF and Primitive Polynomial">
+  <img src="https://raw.githubusercontent.com/hasanabs/BCH_Code_Simulator/master/pic1.png" height="100" title="Input GF and Primitive Polynomial">
   <br>
   Input GF and Primitive Polynomial
   <br><br><br>
   
-  <img src="https://raw.githubusercontent.com/hasanabs/BCH_Code_Simulator/master/pic.png" height="900" title="Galois Field Binary Polynomial Table and BER Result">
+  <img src="https://raw.githubusercontent.com/hasanabs/BCH_Code_Simulator/master/pic2.png" height="550" title="Galois Field Binary Polynomial Table and BER Result">
   <br>
   Galois Field Binary Polynomial Table and BER Result
 </p>
