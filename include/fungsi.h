@@ -36,6 +36,9 @@ class ECC{
         //To get syndrom of BCH code. [input: receive polynomial represent in binary, MSB is in right side; GF table; BCH parity check matrix]
         vector<vector<int>> syndrome_BCH(vector<int> &receive, vector<vector<int>> &a_table, vector<vector<vector<int>>> &H);
 
+        //To encode systematic BCH code. [input: GF table; syndrom of BCH code]
+        vector<int> encode_BCH(vector<int> &data, vector<int> &gx, int n_k);
+
         //To get the value of sigma(x) in BCH code. [input: GF table; syndrom of BCH code]
         vector<vector<int>> decode_BCH(vector<vector<int>> &a_table, vector<vector<int>> syndrome);
 

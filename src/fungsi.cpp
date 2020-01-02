@@ -152,16 +152,25 @@ vector<vector<int>> ECC::syndrome_BCH(vector<int> &receive, vector<vector<int>> 
     return result;
 }
 
+vector<int> ECC::encode_BCH(vector<int> &data, vector<int> &gx, int n_k){
+    vector<int> result=data;
+    for(int i=0; i<n_k; i++) result.insert(result.begin(), {0}); //push_front
+    vector<int> reminder = ECC::mod_poly_bin(result,gx);reminder.resize(n_k);
+    for(int i=0; i<n_k; i++) result.at(i)=reminder.at(i); //shift left
+    return result;
+}
+
 vector<vector<int>> ECC::decode_BCH(vector<vector<int>> &a_table, vector<vector<int>> syndrome){
     vector<int> zeros;
     zeros.insert(zeros.end(),a_table.at(0).begin(),a_table.at(0).end());
     /*-- Initialization table --*/
-    int rho; int trace=0;
+    int rho=0; int trace=0;
     vector<int> poly_init {1};
     for (int i=1;i<(int)syndrome.at(0).size();i++) poly_init.push_back(0);
     vector<vector<vector<int>>> sigma {{poly_init}};  sigma.push_back({{poly_init}});
     vector<vector<int>> du {poly_init}; du.insert(du.end(),syndrome.at(0));
     vector<int> lu {0,0};
+    vector<int> u_lu {-1,0};
     /*-- Initialization table --*/
 
     for (int i=2; i<(int)syndrome.size()+2; i++){
@@ -192,6 +201,7 @@ vector<vector<int>> ECC::decode_BCH(vector<vector<int>> &a_table, vector<vector<
         }
         if (i==(int)syndrome.size()+1) break;
         lu.push_back((int)sigma.at(i).size()-1);
+        u_lu.push_back(i-1-lu.at(i));
         //Update new du
         du.push_back(syndrome.at(i-1)); //s_(u+1)
         for (int k=0; k<lu[i];k++){
